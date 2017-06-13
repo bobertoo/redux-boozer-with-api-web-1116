@@ -1,11 +1,21 @@
 const BASE_URL = 'http://localhost:3000/api/v1'
 
 export function fetchCocktails(){
-  const cocktails = fetch(`${BASE_URL}/cocktails`).then(res => res.json())
+  const cocktails = fetch(`${BASE_URL}/cocktails`).then(res => {
+    console.log(res.status);
+    return res.json();
+  })
 
   return {
     type: 'FETCH_COCKTAILS',
     payload: cocktails
+  }
+}
+
+export function updateCurrentCocktail(cockID) {
+  return {
+    type: 'UPDATE_CURRENT_COCKTAIL',
+    payload: cockID
   }
 }
 
